@@ -20,3 +20,26 @@ class Solution {
         return result;
     }
 }
+
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[nums.length];
+        Arrays.fill(result,-1);
+        Stack<Integer> s = new Stack<>();
+        s.push(0);
+        int i=0;
+        while(i < 2*n) {
+            while(!s.isEmpty() && nums[i % n] > nums[s.peek()]) {
+                int popped = s.pop();
+                result[popped] = nums[i % n];
+            }
+            if (i < n) {
+                s.push(i);
+            }
+            i++;
+        }
+        return result;
+    }
+}
